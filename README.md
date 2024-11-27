@@ -4,7 +4,7 @@ This is a simple React application that displays the live stock prices of 20 com
 ## deploy link
 https://pepsales-omega.vercel.app/
 
-<img width="578" alt="Screenshot 2024-11-26 191151" src="whatsappWeb\public\Screenshot (175).png">
+<img width="578" alt="Screenshot 2024-11-26 191151" src="pepsales\public\Screenshot (175).png">
 
 ## Features
 
