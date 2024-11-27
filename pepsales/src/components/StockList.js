@@ -1,37 +1,36 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchStocks } from '../redux/actions';
+// src/components/StockList.js
+import React, { useState } from 'react';
+import { stocks } from '../data/stocks';
 import { Link } from 'react-router-dom';
 
 const StockList = () => {
-    const dispatch = useDispatch();
-    const { stocks, loading, error } = useSelector((state) => state.stock);
+  const [stockData, setStockData] = useState(stocks);
 
-    useEffect(() => {
-        dispatch(fetchStocks());
-    }, [dispatch]);
-
-    const loadMore = () => {
-        dispatch(fetchStocks(stocks.length));
-    };
-
-    return (
-        <div>
-            <h1>Live Stock Prices</h1>
-            {loading && <p>Loading...</p>}
-            {error && <p>Error: {error}</p>}
-            <ul>
-                {stocks.map((stock) => (
-                    <li key={stock.id}>
-                        <Link to={`/stocks/${stock.id}`}>
-                            {stock.name}: {stock.price}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-            <button onClick={loadMore}>Load More</button>
-        </div>
-    );
+  return (
+    <div className="stock-list">
+      <h1>Stock Prices</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Stock Name</th>
+            <th>Price</th>
+            <th>Change</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          {stockData.map((stock) => (
+            <tr key={stock.id}>
+              <td>{stock.name}</td>
+              <td>{stock.price}</td>
+              <td>{stock.change}</td>
+              <td><Link to={`/stock/${stock.id}`}>View Details</Link></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default StockList;
